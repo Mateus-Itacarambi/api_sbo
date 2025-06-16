@@ -58,7 +58,7 @@ public class AutenticacaoController {
         ResponseCookie cookie = ResponseCookie.from("token", tokenJWT)
                 .httpOnly(true)
                 .secure(true)
-                .sameSite("Lax")
+                .sameSite("None")
                 .path("/")
                 .maxAge(2 * 60 * 60)
                 .build();
@@ -74,7 +74,7 @@ public class AutenticacaoController {
                 .path("/")
                 .httpOnly(true)
                 .secure(true)
-                .sameSite("Lax")
+                .sameSite("None")
                 .maxAge(0)
                 .build();
 
