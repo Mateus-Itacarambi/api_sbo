@@ -1,1 +1,0 @@
-ALTER TABLE curso ADD slug VARCHAR(255);
