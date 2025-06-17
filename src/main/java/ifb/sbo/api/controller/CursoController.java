@@ -1,5 +1,6 @@
 package ifb.sbo.api.controller;
 
+import com.opencsv.exceptions.CsvException;
 import ifb.sbo.api.domain.area_interesse.AreaInteresseListagemDTO;
 import ifb.sbo.api.domain.curso.*;
 import ifb.sbo.api.infra.service.SlugUtils;
@@ -26,7 +27,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("cursos")
-@CrossOrigin("http://localhost:3000/")
 public class CursoController {
     @Autowired
     private CursoRepository repository;
@@ -110,6 +110,8 @@ public class CursoController {
 
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (CsvException e) {
+            throw new RuntimeException(e);
         }
     }
 }

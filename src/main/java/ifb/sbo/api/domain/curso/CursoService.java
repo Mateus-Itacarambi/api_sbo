@@ -1,6 +1,7 @@
 package ifb.sbo.api.domain.curso;
 
-import ifb.sbo.api.domain.professor.ProfessorBuscaDTO;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import ifb.sbo.api.domain.professor.ProfessorCursoDTO;
 import ifb.sbo.api.infra.exception.ConflitoException;
 import ifb.sbo.api.infra.service.SlugUtils;
@@ -32,23 +33,23 @@ public class CursoService {
     }
 
     @Transactional
-    public ByteArrayResource importarCursos(MultipartFile file) throws IOException {
+    public ByteArrayResource importarCursos(MultipartFile file) throws IOException, CsvException {
         StringBuilder csvContent = new StringBuilder();
         csvContent.append("Linha,Mensagem\n");
 
         int linhaAtual = 1;
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
-            String linha;
-            boolean primeiraLinha = true;
 
-            while ((linha = reader.readLine()) != null) {
-                if (primeiraLinha) {
-                    primeiraLinha = false;
+        try (
+                BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8));
+                CSVReader csvReader = new CSVReader(reader)
+        ) {
+            List<String[]> linhas = csvReader.readAll();
+
+            for (String[] campos : linhas) {
+                if (linhaAtual == 1) {
                     linhaAtual++;
                     continue;
                 }
-
-                String[] campos = linha.split(",", -1); // -1 para manter campos vazios no final
 
                 if (campos.length < 7) {
                     csvContent.append(linhaAtual).append(",formato inválido (campos insuficientes)\n");
@@ -107,7 +108,6 @@ public class CursoService {
         byte[] reportBytes = csvContent.toString().getBytes(StandardCharsets.UTF_8);
         return new ByteArrayResource(reportBytes);
     }
-
 
     public CursoListagemDTO detalhar(Long cursoId) {
         var curso = buscarCurso(cursoId);
