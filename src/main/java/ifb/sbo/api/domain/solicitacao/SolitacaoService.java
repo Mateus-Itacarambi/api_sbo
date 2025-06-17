@@ -90,7 +90,6 @@ public class SolitacaoService {
 
     @Transactional
     public SolicitacaoListagemDTO rejeitarSolicitacao(Long solicitacaoId, Usuario usuario, SolicitacaoMotivoDTO dados) {
-        System.out.println("USUARIO LOGADO: " + usuario.getNome() + " - " + usuario.getId());
         var solicitacao = buscarSolicitacao(solicitacaoId);
 
         usuarioService.permissaoRejeitar(usuario);

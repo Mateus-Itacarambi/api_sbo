@@ -39,7 +39,7 @@ public class EmailService {
         usuario.setDataExpiracaoToken(LocalDateTime.now().plusHours(1));
         usuarioRepository.save(usuario);
 
-        String link = "http://localhost:3000/redefinir-senha?token=" + token;
+        String link = "https://sbo-beta.vercel.app/redefinir-senha?token=" + token;
 
         mensagem.setTo(email);
         mensagem.setSubject("Redefinição de Senha");

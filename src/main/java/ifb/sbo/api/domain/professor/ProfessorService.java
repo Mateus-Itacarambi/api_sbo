@@ -243,7 +243,6 @@ public class ProfessorService {
                     professor.setCadastroCompleto(false);
 
                     professorRepository.save(professor);
-                    System.out.println("EMAIL: " + professor.getEmail() + "SENHA: " + senhaGerada);
                     emailService.enviarSenhaPorEmail(email, senhaGerada);
 
                     csvContent.append(linhaAtual).append(",importado com sucesso\n");
