@@ -22,9 +22,26 @@ public class EmailService {
     public void enviarSenhaPorEmail(String email, String senha) {
         SimpleMailMessage mensagem = new SimpleMailMessage();
         mensagem.setTo(email);
-        mensagem.setSubject("Cadastro no sistema");
-        mensagem.setText("Olá! Sua conta foi criada. Sua senha temporária é: " + senha);
+        mensagem.setSubject("Conta criada no Sistema SBO");
 
+        String corpo = """
+        Olá,
+
+        Sua conta foi criada com sucesso no Sistema SBO.
+
+        Aqui estão seus dados de acesso:
+        - E-mail: %s
+        - Senha temporária: %s
+
+        Acesse o sistema em: https://sbo-beta.vercel.app/
+
+        Se você não solicitou essa conta, por favor ignore esta mensagem ou entre em contato com a equipe responsável.
+
+        Atenciosamente,
+        Sistema SBO
+        """.formatted(email, senha);
+
+        mensagem.setText(corpo);
         mailSender.send(mensagem);
     }
 
