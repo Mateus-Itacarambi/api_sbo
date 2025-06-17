@@ -12,6 +12,7 @@ public record ProfessorResumoDTO(
         Long id,
         String nome,
         String idLattes,
+        String email,
         String role,
         Boolean ativo,
         Boolean cadastroCompleto) {

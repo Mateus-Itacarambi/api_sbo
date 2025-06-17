@@ -378,6 +378,7 @@ public class ProfessorService {
                 professor.getId(),
                 professor.getNome(),
                 professor.getIdLattes(),
+                professor.getEmail(),
                 professor.getRole().toString(),
                 professor.getAtivo(),
                 professor.getCadastroCompleto()
