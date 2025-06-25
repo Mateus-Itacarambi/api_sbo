@@ -35,6 +35,8 @@ public class EmailService {
 
         Acesse o sistema em: https://sbo-beta.vercel.app/
 
+        Observação: no primeiro acesso, o carregamento pode demorar alguns segundos, pois o sistema está hospedado em ambiente gratuito.
+
         Se você não solicitou essa conta, por favor ignore esta mensagem ou entre em contato com a equipe responsável.
 
         Atenciosamente,
