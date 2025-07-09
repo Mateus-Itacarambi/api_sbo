@@ -45,12 +45,6 @@ public class TemaService {
     @Autowired
     private UsuarioService usuarioService;
 
-//    public TemaService(EstudanteService estudanteService, ProfessorService professorService, UsuarioService usuarioService) {
-//        this.estudanteService = estudanteService;
-//        this.professorService = professorService;
-//        this.usuarioService = usuarioService;
-//    }
-
     public EstudanteListagemDTO criarTemaEstudante(Long estudanteId, TemaCadastroDTO dados) {
         buscarTemaTitulo(dados.titulo());
         var estudante = estudanteService.buscarEstudante(estudanteId);

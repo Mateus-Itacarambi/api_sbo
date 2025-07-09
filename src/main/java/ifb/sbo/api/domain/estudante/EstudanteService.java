@@ -45,7 +45,6 @@ public class EstudanteService {
         var curso = cursoRepository.getReferenceById(dados.idCurso());
 
         var estudante = new Estudante(dados, curso);
-//        var estudante = new Estudante(dados);
         estudante.setRole(TipoUsuario.ESTUDANTE);
         estudanteRepository.save(estudante);
 
@@ -57,10 +56,6 @@ public class EstudanteService {
         if (!dados.isMaiorDeIdade()) {
             throw new ConflitoException("É necessário ter pelo menos 18 anos!");
         }
-
-//        if (!Objects.equals(estudante.getEmail(), dados.email())) {
-//            usuarioService.buscarEmail(dados.email());
-//        }
 
         if (!Objects.equals(estudante.getMatricula(), dados.matricula())) {
             buscarMatricula(dados.matricula());

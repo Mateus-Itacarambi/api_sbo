@@ -83,18 +83,6 @@ public class ProfessorService {
         return mapearParaDTO(professor);
     }
 
-//    @Transactional
-//    public void adicionarAreaInteresse(Long professorId, Long areaInteresseId) {
-//        Professor professor = buscarProfessor(professorId);
-//        AreaInteresse areaInteresse = buscarAreaInteresse(areaInteresseId);
-//
-//        if (professor.getAreasInteresse().contains(areaInteresse)) {
-//            throw new ConflitoException("Esta área de interesse já foi adicionada ao professor.");
-//        }
-//
-//        professor.getAreasInteresse().add(areaInteresse);
-//    }
-
     @Transactional
     public void adicionarAreasInteresse(Long professorId, List<Long> idsAreas) {
         Professor professor = buscarProfessor(professorId);
@@ -116,18 +104,6 @@ public class ProfessorService {
 
         professor.getAreasInteresse().remove(areaInteresse);
     }
-
-//    @Transactional
-//    public void adicionarCurso(Long professorId, Long cursoId) {
-//        Professor professor = buscarProfessor(professorId);
-//        Curso curso = buscarCurso(cursoId);
-//
-//        if (professor.getCursos().contains(curso)) {
-//            throw new ConflitoException("Este curso já foi adicionado ao professor.");
-//        }
-//
-//        professor.getCursos().add(curso);
-//    }
 
     @Transactional
     public void adicionarCursos(Long professorId, List<Long> idsCursos) {
@@ -195,7 +171,6 @@ public class ProfessorService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         StringBuilder csvContent = new StringBuilder();
 
-        // Cabeçalho do CSV
         csvContent.append("Linha,Mensagem\n");
 
         int linhaAtual = 1;

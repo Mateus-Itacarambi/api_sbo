@@ -98,14 +98,6 @@ public class ProfessorController {
         return ResponseEntity.ok(professor);
     }
 
-//    @PostMapping("/{professorId}/adicionarAreaInteresse/{areaInteresseId}")
-//    public ResponseEntity<ProfessorListagemDTO> adicionarAreaDeInteresse(@PathVariable Long professorId, @PathVariable Long areaInteresseId, UriComponentsBuilder uriBuilder) {
-//        professorService.adicionarAreaInteresse(professorId, areaInteresseId);
-//
-//        var uri = uriBuilder.path("/professores/{id}").buildAndExpand(professorId).toUri();
-//        return ResponseEntity.created(uri).body(professorService.detalharProfessor(professorId));
-//    }
-
     @PostMapping("/{professorId}/adicionarAreasInteresse")
     public ResponseEntity<ProfessorListagemDTO> adicionarAreasInteresse(
             @PathVariable Long professorId,

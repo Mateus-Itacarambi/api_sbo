@@ -12,23 +12,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class TratadorDeErros {
-//    @ExceptionHandler(EntityNotFoundException.class)
-//    public ResponseEntity TratarErro404() {
-//        return ResponseEntity.notFound().build();
-//    }
-
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<String> handleBadCredentialsException(BadCredentialsException ex) {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body("Usuário ou senha inválidos. Verifique suas credenciais.");
     }
-
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity TratarErro400(MethodArgumentNotValidException ex) {
-//        var erros = ex.getFieldErrors();
-//        return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacao::new).toList());
-//    }
 
     @ExceptionHandler(ConflitoException.class)
     public ResponseEntity<String> TratarErro409(ConflitoException ex) {

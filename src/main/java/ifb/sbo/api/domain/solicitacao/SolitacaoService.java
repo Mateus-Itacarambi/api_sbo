@@ -243,6 +243,8 @@ public class SolitacaoService {
                                     )
                             );
                 } else {
+                    notificacaoService.criarNotificacao(estudante, solicitacao.getProfessor(), "Solicitação de orientação cancelada por ", solicitacao, TipoSolicitacao.ORIENTACAO.toString());
+
                     tema.getEstudantes().stream()
                             .filter(e -> !e.getId().equals(estudante.getId()))
                             .forEach(outroEstudante ->

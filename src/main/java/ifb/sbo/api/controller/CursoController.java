@@ -42,12 +42,6 @@ public class CursoController {
         return ResponseEntity.created(uri).body(curso);
     }
 
-//    @GetMapping
-//    public ResponseEntity<Page<CursoListagemDTO>> listar(@PageableDefault(sort = {"nome"}) Pageable paginacao) {
-//        var page = repository.findAllByAtivoTrue(paginacao).map(CursoListagemDTO::new);
-//        return ResponseEntity.ok(page);
-//    }
-
     @GetMapping("/lista")
     public List<CursoListagemProfessorDTO> listarAtivas() {
         return repository.findByAtivoTrue().stream()
@@ -79,11 +73,6 @@ public class CursoController {
         curso.ativar();
         return ResponseEntity.ok(cursoService.mapearParaDTO(curso));
     }
-
-//    @GetMapping("/{id}")
-//    public ResponseEntity<CursoListagemDTO> detalhar(@PathVariable Long id) {
-//        return ResponseEntity.ok(cursoService.detalhar(id));
-//    }
 
     @GetMapping("/{slug}")
     public ResponseEntity<CursoListagemDTO> buscarPorSlug(@PathVariable String slug) {
